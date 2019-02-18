@@ -23,8 +23,11 @@ import {
     updateFilter,
     clearCompleted
 } from "../redux/actions";
+import {
+    BaseView
+} from "./base-view";
 
-class TodoView extends connect(store)(LitElement) {
+class TodoView extends connect(store)(BaseView) {
     static get properties() {
         return {
             todos: {
@@ -121,10 +124,6 @@ class TodoView extends connect(store)(LitElement) {
 
             this.task = "";
         }
-    }
-
-    createRenderRoot() {
-        return this;
     }
 };
 

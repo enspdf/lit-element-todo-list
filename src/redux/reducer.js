@@ -31,8 +31,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 todos: state.todos.map(todo =>
-                    todo.id === action.todo.id ?
-                    {
+                    todo.id === action.todo.id ? {
                         ...action.todo,
                         complete: action.complete
                     } :
@@ -68,6 +67,18 @@ export const getVisibleTodosSelector = createSelector(
                 return todos.filter(todo => todo.complete);
             default:
                 return todos;
+        }
+    }
+);
+
+export const statsSelector = createSelector(
+    getTodosSelector,
+    (todo) => {
+        const completed = todos.filter(todo => todo.complete).length;
+
+        return {
+            completed,
+            active: todos.length - completed
         }
     }
 );
